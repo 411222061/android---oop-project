@@ -20,6 +20,13 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    - name: Verify tar Installation
+      run: |
+        if ! which tar; then
+          echo "tar is not installed, installing now..."
+          sudo apt-get update && sudo apt-get install -y tar
+        fi
+
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
