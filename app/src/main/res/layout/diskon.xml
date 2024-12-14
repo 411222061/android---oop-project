@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!--    Hitung Harga diskon  -->
+    <EditText
+        android:id="@+id/inputHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nasukan Harga"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/inputDiskon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan Diskon (%)"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnHitung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hitung - Riki Setiyo P" />
+
+    <TextView
+        android:id="@+id/hasil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harga Terakhir" />
+
+</LinearLayout>

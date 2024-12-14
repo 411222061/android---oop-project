@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!--    Hitung Persegi  -->
+    <EditText
+        android:id="@+id/inputsisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan panjang sisi persegi"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/hitungLuas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hitung Luas Persegi" />
+
+    <TextView
+        android:id="@+id/hasilLuasPersegi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Basil Luas Persegi" />
+
+    <!--    Hitung volume kerucut  -->
+    <EditText
+        android:id="@+id/inputJariJari"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan jari-jari lingkaran"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/inputTinggi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan tinggi kerucut"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/hitungVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hitung Volume Kerucut" />
+
+    <TextView
+        android:id="@+id/hasilVolumeKerucut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Basil Volume Kerucut" />
+
+    <Button
+        android:id="@+id/hitungSegitiga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hitung Luas Segitiga" />
+
+    <TextView
+        android:id="@+id/hasilLuasSegitiga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hasil Luas Segitiga" />
+
+</LinearLayout>
