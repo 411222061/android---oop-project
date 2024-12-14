@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'adoptopenjdk'
+        distribution: 'temurin'  # Replace adoptopenjdk with temurin (Adoptium)
 
     - name: Set up Android SDK
       uses: reactivecircus/android-emulator-runner@v2
