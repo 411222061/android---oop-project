@@ -1,10 +1,12 @@
-name: Android CI
+name: Build APK and Copy to myapk Folder
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
@@ -18,20 +20,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'temurin'
-
-    - name: Set up Android SDK
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 30
-        arch: x86_64
-        target: google_apis
-        force-avd-creation: true
-
-    - name: Install Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y wget unzip curl
+        distribution: 'temurin'  # Ensure Temurin is used instead of AdoptOpenJDK
 
     - name: Install Android SDK Command Line Tools
       run: |
@@ -42,7 +31,7 @@ jobs:
         yes | $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager --licenses
         $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager --update
         # Install essential Android SDK components including adb
-        $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3" "emulator"
+        $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
     - name: Build APK with Gradle
       run: |
