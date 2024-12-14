@@ -20,18 +20,32 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'temurin'  # Ensure Temurin is used instead of AdoptOpenJDK
+        distribution: 'temurin'
 
     - name: Install Android SDK Command Line Tools
       run: |
-        mkdir -p $HOME/Android/Sdk
+        # Create the SDK directory
+        mkdir -p $HOME/Android/Sdk/cmdline-tools
+
+        # Download and unzip the command line tools
         wget -q https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O commandlinetools.zip
-        unzip commandlinetools.zip -d $HOME/Android/Sdk
+        unzip commandlinetools.zip -d $HOME/Android/Sdk/cmdline-tools
         rm commandlinetools.zip
-        yes | $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager --licenses
-        $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager --update
-        # Install essential Android SDK components including adb
-        $HOME/Android/Sdk/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+        # Move the extracted folder to "latest" (to comply with sdkmanager structure)
+        mv $HOME/Android/Sdk/cmdline-tools/cmdline-tools $HOME/Android/Sdk/cmdline-tools/latest
+
+        # Accept licenses and install necessary packages
+        yes | $HOME/Android/Sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+        $HOME/Android/Sdk/cmdline-tools/latest/bin/sdkmanager --update
+
+        # Install platform-tools, build-tools, and SDK platforms
+        $HOME/Android/Sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+    - name: Set ANDROID_HOME environment variable
+      run: |
+        echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
+        echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
 
     - name: Build APK with Gradle
       run: |
