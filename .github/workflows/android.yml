@@ -25,7 +25,13 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y unzip
 
     - name: Install tar
-      run: sudo apt-get install -y tar
+      run: sudo apt-get update && sudo apt-get install -y tar
+
+    - name: Verify tar installation
+      run: which tar
+
+    - name: Set PATH for tar
+      run: echo "/usr/bin" >> $GITHUB_PATH
 
     - name: Install Android SDK Command Line Tools
       run: |
