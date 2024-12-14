@@ -47,6 +47,10 @@ jobs:
         echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
         echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
 
+    - name: Make gradlew executable
+      run: |
+        chmod +x ./gradlew
+
     - name: Build APK with Gradle
       run: |
         ./gradlew clean assembleRelease
