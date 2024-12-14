@@ -42,6 +42,10 @@ jobs:
         # Install platform-tools, build-tools, and SDK platforms
         $HOME/Android/Sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
+    - name: Unset ANDROID_SDK_ROOT if set
+      run: |
+        unset ANDROID_SDK_ROOT
+
     - name: Set ANDROID_HOME environment variable
       run: |
         echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
