@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ANDROID_HOME: ${{ runner.temp }}/Android/Sdk
-      PATH: $ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+      ANDROID_HOME: ${{ env.HOME }}/Android/Sdk
+      PATH: ${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/cmdline-tools/latest/bin:${{ env.PATH }}
 
     steps:
     - name: Checkout Repository
@@ -38,20 +38,16 @@ jobs:
         $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
     - name: Make gradlew executable
-      run: |
-        chmod +x ./gradlew
+      run: chmod +x ./gradlew
 
     - name: Build APK with Gradle
-      run: |
-        ./gradlew clean assembleRelease
+      run: ./gradlew clean assembleRelease
 
     - name: Create myapk Folder
-      run: |
-        mkdir -p myapk
+      run: mkdir -p myapk
 
     - name: Copy APK to myapk Folder
-      run: |
-        cp app/build/outputs/apk/release/app-release.apk myapk/
+      run: cp app/build/outputs/apk/release/app-release.apk myapk/
 
     - name: Upload APK
       uses: actions/upload-artifact@v3
