@@ -42,12 +42,17 @@ jobs:
         # Install platform-tools, build-tools, and SDK platforms
         $HOME/Android/Sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
 
-    - name: Set ANDROID_HOME and clear ANDROID_SDK_ROOT
+    - name: Unset ANDROID_HOME and ANDROID_SDK_ROOT
       run: |
+        # Clear any environment variables that might conflict
+        unset ANDROID_HOME
+        unset ANDROID_SDK_ROOT
+
+    - name: Set ANDROID_HOME environment variable
+      run: |
+        # Set the correct SDK path explicitly
         echo "ANDROID_HOME=$HOME/Android/Sdk" >> $GITHUB_ENV
         echo "PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH" >> $GITHUB_ENV
-        # Unset ANDROID_SDK_ROOT if it is being set automatically
-        unset ANDROID_SDK_ROOT
 
     - name: Make gradlew executable
       run: |
